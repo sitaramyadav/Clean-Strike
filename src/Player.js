@@ -1,4 +1,4 @@
-import {Operation} from "./Operation";
+import { StrikerActions } from './strikerActions';
 
 class Player {
     constructor( id, score, foul, chance) {
@@ -8,10 +8,6 @@ class Player {
         this.chance = chance;
     }
 
-    foulCheck () {
-        return this.foul % 3 == 3;
-    };
-
     removeBlackCoin(coinRemoved, coins) {
         if(coinRemoved >= 0 ) {
             coins.blackCoin = coins.blackCoin - coinRemoved;
@@ -19,26 +15,25 @@ class Player {
             this.foul = this.foul + 1;
             coins.blackCoin = coins.blackCoin + coinRemoved;
         }
-
     }
 
     play (striker, coins) {
-       const operation = Operation(striker);
+       const action = StrikerActions(striker);
 
-        if (operation.points <= 0) {
+        if (action.points <= 0) {
             this.foul = this.foul + 1;
         }
-        this.score = this.score + (operation.points);
+        this.score = this.score + (action.points);
 
         // Remove the one points if there is 3  foul remove one more points
         if (this.foul > 2 ) {
             this.score = this.score - 1;
         }
 
-        if (operation.coinRemoved == 'RED') {
+        if (action.coinRemoved == 'RED') {
             coins.redCoin = 0;
         } else {
-            this.removeBlackCoin(operation.coinRemoved, coins);
+            this.removeBlackCoin(action.coinRemoved, coins);
 
         }
 

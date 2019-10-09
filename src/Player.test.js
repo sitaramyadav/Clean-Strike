@@ -1,4 +1,11 @@
 import Player from './Player';
+import {
+    STRIKE, MULTI_STRIKE, RED_STRIKE,
+    STRIKER_STRIKE, DEFUNCT_COIN, NONE
+} from './strikerActions';
+
+// eslint-disable-next-line no-undef
+/* eslint no-undef: { "describe": true , "expect": true, "it": true} */
 
 describe('Player', () => {
 
@@ -18,7 +25,7 @@ describe('Player', () => {
         expect(player.score).toEqual(0);
         expect(coins.blackCoin).toEqual(9);
 
-        player.play(1, coins);
+        player.play(STRIKE, coins);
 
         expect(player.score).toEqual(1);
         expect(coins.blackCoin).toEqual(8);
@@ -31,7 +38,7 @@ describe('Player', () => {
         expect(player.score).toEqual(0);
         expect(coins.blackCoin).toEqual(9);
 
-        player.play(2, coins);
+        player.play(MULTI_STRIKE, coins);
 
         expect(player.score).toEqual(2);
         expect(coins.blackCoin).toEqual(9);
@@ -45,7 +52,7 @@ describe('Player', () => {
         expect(coins.blackCoin).toEqual(9);
         expect(coins.redCoin).toEqual(1);
 
-        player.play(3, coins);
+        player.play(RED_STRIKE, coins);
 
         expect(player.score).toEqual(3);
         expect(coins.blackCoin).toEqual(9);
@@ -60,7 +67,7 @@ describe('Player', () => {
         expect(coins.blackCoin).toEqual(9);
         expect(coins.redCoin).toEqual(1);
 
-        player.play(4, coins);
+        player.play(STRIKER_STRIKE, coins);
 
         expect(player.score).toEqual(-1);
         expect(coins.blackCoin).toEqual(9);
@@ -76,7 +83,7 @@ describe('Player', () => {
         expect(coins.blackCoin).toEqual(9);
         expect(coins.redCoin).toEqual(1);
 
-        player.play(5, coins);
+        player.play(DEFUNCT_COIN, coins);
 
         expect(player.score).toEqual(-2);
         expect(coins.blackCoin).toEqual(8);
@@ -91,9 +98,9 @@ describe('Player', () => {
         expect(coins.blackCoin).toEqual(9);
         expect(coins.redCoin).toEqual(1);
 
-        player.play(6, coins);
-        player.play(6, coins);
-        player.play(6, coins);
+        player.play(NONE, coins);
+        player.play(NONE, coins);
+        player.play(NONE, coins);
 
         expect(player.score).toEqual(-1);
     });
@@ -107,9 +114,9 @@ describe('Player', () => {
         expect(coins.blackCoin).toEqual(9);
         expect(coins.redCoin).toEqual(1);
 
-        player.play(4, coins);
-        player.play(5, coins);
-        player.play(4, coins);
+        player.play(STRIKER_STRIKE, coins);
+        player.play(DEFUNCT_COIN, coins);
+        player.play(STRIKER_STRIKE, coins);
 
         expect(player.score).toEqual(-5);
     });

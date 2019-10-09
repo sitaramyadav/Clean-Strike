@@ -14,29 +14,29 @@ class Game  {
     isAnyPlayerWon (players) {
         return (Math.abs(players[0].score - players[1].score) >= 3 &&
             (players[0].score >= 5 || players[1].score >= 5));
-    };
+    }
 
     areCoinsExhausted (coin) {
         return coin.redCoin === 0 && coin.blackCoin === 0 ? true : false;
-    };
+    }
 
     result (players) {
         const firstPlayerScore = players[0].score;
         const secondPlayerScore = players[1].score;
         if(Math.abs(firstPlayerScore - secondPlayerScore) >= 3
             && (players[0].score > 4 || secondPlayerScore > 4)) {
-            const won = firstPlayerScore > secondPlayerScore ? ('First player won by '+firstPlayerScore +'-' +(secondPlayerScore > 0 ? secondPlayerScore: 0 ))
+            return firstPlayerScore > secondPlayerScore ? ('First player won by '+firstPlayerScore +'-' +(secondPlayerScore > 0 ? secondPlayerScore: 0 ))
                 : ('Second Player won by ' + firstPlayerScore + '-' + secondPlayerScore);
-            return won;
+
         } else {
             return `Match drawn by First Player ${firstPlayerScore} Points, Second PLayer ${secondPlayerScore} points`;
         }
-    };
+    }
 
 
     start () {
         for (let i = 0; i < this.inputs.length; i++) {
-            const currentPlayer = this.players.find(e => e.chance ===true);
+            const currentPlayer = this.players.find(e => e.chance === true);
             const striker = this.inputs[i];
             this.players[currentPlayer.id].play(striker, this.coins);
 

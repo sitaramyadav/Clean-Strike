@@ -1,12 +1,12 @@
-const STRIKE = 1;
-const MULTI_STRIKE = 2;
-const RED_STRIKE = 3;
-const STRIKER_STRIKE = 4;
-const DEFUNCT_COIN = 5;
-const NONE = 6;
-export const Operation = function (operation) {
+export const STRIKE = 1;
+export const MULTI_STRIKE = 2;
+export const RED_STRIKE = 3;
+export const STRIKER_STRIKE = 4;
+export const DEFUNCT_COIN = 5;
+export const NONE = 6;
+export const StrikerActions = function (action) {
 
-    switch (operation) {
+    switch (action) {
         case STRIKE :
             return { option: 1, points: 1, coinRemoved: 1 };
         case MULTI_STRIKE :
