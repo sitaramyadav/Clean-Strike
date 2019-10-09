@@ -11,8 +11,8 @@ import {
 describe('Game', () => {
 
     it('should draw the game', () => {
-        const player1 = new Player(0, 0, 0, true);
-        const player2 = new Player(1, 0, 0, false);
+        const player1 = new Player(0, true);
+        const player2 = new Player(1, false);
         const outcome =
              [
                 STRIKE, STRIKE, STRIKE, RED_STRIKE,
@@ -20,13 +20,13 @@ describe('Game', () => {
                 STRIKE, STRIKE
             ];
         const game = new Game([player1, player2], outcome);
-        const expectedResult = 'Match drawn by First Player 6 Points, Second PLayer 6 points';
+        const expectedResult = 'Match drawn by 6-6';
         expect(game.start()).toEqual(expectedResult);
     });
 
     it('should won the first player by 5-0', () => {
-        const player1 = new Player(0, 0, 0, true);
-        const player2 = new Player(1, 0, 0, false);
+        const player1 = new Player(0, true);
+        const player2 = new Player(1, false);
         const outcome =
             [ STRIKE, NONE, STRIKE, NONE, STRIKE,
                 NONE, STRIKE, STRIKER_STRIKE, STRIKE
@@ -37,8 +37,8 @@ describe('Game', () => {
     });
 
     it('should won the second player by 5-0', () => {
-        const player1 = new Player(0, 0, 0, true);
-        const player2 = new Player(1, 0, 0, false);
+        const player1 = new Player(0, true);
+        const player2 = new Player(1, false);
         const outcome =
             [
                 STRIKE, NONE, STRIKE, NONE,
@@ -52,8 +52,8 @@ describe('Game', () => {
     });
 
     it('should won the Second player by 11-15', () => {
-        const player1 = new Player(0, 0, 0, true);
-        const player2 = new Player(1, 0, 0, false);
+        const player1 = new Player(0, true);
+        const player2 = new Player(1, false);
         const outcome =
             [
                 STRIKE, STRIKE, STRIKE, STRIKE, STRIKE,

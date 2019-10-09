@@ -8,17 +8,17 @@ export const strikerActions = function (action) {
 
     switch (action) {
         case STRIKE :
-            return { points: 1, coinRemoved: 1 };
+            return { points: 1};
         case MULTI_STRIKE :
-            return  { points: 2, coinRemoved: 0 };
+            return  { points: 2 };
         case RED_STRIKE :
-            return  { points: 3, coinRemoved: 'RED' };
+            return  { points: 3 };
         case STRIKER_STRIKE :
-            return  { points: -1, coinRemoved: 0 };
+            return  { points: -1 };
         case DEFUNCT_COIN :
-            return  { points: -2, coinRemoved: -1 };
+            return  { points: -2 };
         case NONE :
-            return  { points: 0, coinRemoved: 0 };
+            return  { points: 0 };
 
     }
 // player has points
