@@ -10,10 +10,9 @@ export const Operation = function (operation) {
         case STRIKE :
             return { option: 1, points: 1, coinRemoved: 1 };
         case MULTI_STRIKE :
-
-            return  { option: 2, points: 2, coinRemoved: 2 };
+            return  { option: 2, points: 2, coinRemoved: 0 };
         case RED_STRIKE :
-            return  { option: 3, points: 3, coinRemoved: 255 };
+            return  { option: 3, points: 3, coinRemoved: 'RED' };
         case STRIKER_STRIKE :
             return  { option: 4, points: -1, coinRemoved: 0 };
         case DEFUNCT_COIN :
