@@ -1,4 +1,4 @@
-import { StrikerActions } from './strikerActions';
+import { strikerActions } from '../Actions/strikerActions';
 
 class Player {
     constructor( id, score, foul, chance) {
@@ -18,7 +18,7 @@ class Player {
     }
 
     play (striker, coins) {
-       const action = StrikerActions(striker);
+       const action = strikerActions(striker);
 
         if (action.points <= 0) {
             this.foul = this.foul + 1;

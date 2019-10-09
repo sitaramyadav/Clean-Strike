@@ -2,7 +2,7 @@ import Player from './Player';
 import {
     STRIKE, MULTI_STRIKE, RED_STRIKE,
     STRIKER_STRIKE, DEFUNCT_COIN, NONE
-} from './strikerActions';
+} from '../Actions/strikerActions';
 
 // eslint-disable-next-line no-undef
 /* eslint no-undef: { "describe": true , "expect": true, "it": true} */

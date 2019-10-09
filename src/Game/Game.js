@@ -2,7 +2,7 @@
 class Game  {
     constructor(players, outcome) {
         this.players = players;
-        this.inputs = outcome;
+        this.outcome = outcome;
         this.coins = { redCoin: 1, blackCoin: 9 };
 
     }
@@ -35,9 +35,9 @@ class Game  {
 
 
     start () {
-        for (let i = 0; i < this.inputs.length; i++) {
+        for (let i = 0; i < this.outcome.length; i++) {
             const currentPlayer = this.players.find(e => e.chance === true);
-            const striker = this.inputs[i];
+            const striker = this.outcome[i];
             this.players[currentPlayer.id].play(striker, this.coins);
 
             this.changeTurn(currentPlayer.id);
