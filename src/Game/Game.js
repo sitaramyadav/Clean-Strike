@@ -1,3 +1,4 @@
+import {DEFUNCT_COIN, MULTI_STRIKE, RED_STRIKE, STRIKE, STRIKER_STRIKE} from "../Actions/strikerActions";
 
 class Game {
     constructor(players, outcome) {
@@ -7,26 +8,30 @@ class Game {
 
     }
 
-    updateBlackCoins(striker) {
-        if (striker >= 0) {
-            this.coins.blackCoin = this.coins.blackCoin - striker;
-        } else {
-            this.coins.blackCoin = this.coins.blackCoin + striker;
-        }
-    }
-
     updateCoins(striker) {
-        if (striker === 3) {
-            this.coins.redCoin = 0;
-        } else {
-            this.updateBlackCoins(striker);
-
+        switch (striker) {
+            case STRIKE :
+            case DEFUNCT_COIN :
+                return this.coins.blackCoin = this.coins.blackCoin - 1;
+            case RED_STRIKE:
+                return this.coins.redCoin = this.coins.redCoin -1;
+            case STRIKER_STRIKE:
+            case MULTI_STRIKE :
+                return ;
         }
     }
 
-    changeTurn(id) {
-        this.players[id].chance = false;
-        this.players[id === 0 ? 1 : 0].chance = true;
+    changeTurn(currentId) {
+        let id = null;
+
+        this.players[currentId].chance = false;
+         if(currentId < this.players.length -1) {
+             id = id+1;
+        } else {
+             id = 0;
+         }
+
+        this.players[id].chance = true;
     }
 
     isAnyPlayerWon() {
@@ -38,19 +43,23 @@ class Game {
         return this.coins.redCoin === 0 && this.coins.blackCoin === 0 ? true : false;
     }
 
+    formatWinnerMessage(firstPlayerScore, secondPlayerScore) {
+        return firstPlayerScore > secondPlayerScore
+            ? (`First player won by ${firstPlayerScore}-${(secondPlayerScore > 0 ? secondPlayerScore : 0)}`)
+            : (`Second Player won by ${firstPlayerScore}-${secondPlayerScore}`);
+    }
+
     result() {
         const firstPlayerScore = this.players[0].score;
         const secondPlayerScore = this.players[1].score;
         if (Math.abs(firstPlayerScore - secondPlayerScore) >= 3
             && (this.players[0].score > 4 || secondPlayerScore > 4)) {
-            return firstPlayerScore > secondPlayerScore ? ('First player won by ' + firstPlayerScore + '-' + (secondPlayerScore > 0 ? secondPlayerScore : 0))
-                : ('Second Player won by ' + firstPlayerScore + '-' + secondPlayerScore);
+            return this.formatWinnerMessage(firstPlayerScore, secondPlayerScore);
 
         } else {
             return `Match drawn by ${firstPlayerScore}-${secondPlayerScore}`;
         }
     }
-
 
     start () {
         for (let i = 0; i < this.outcome.length; i++) {
@@ -67,6 +76,7 @@ class Game {
         }
         return this.result();
     }
+
 }
 
 export default Game;
