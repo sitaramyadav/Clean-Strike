@@ -67,7 +67,22 @@ describe('Game', () => {
         expect(game.coins.redCoin).toEqual(expectedResult.redCoins);
     });
 
-    it('should chang the turn of a player', () => {
+    it('should remove two coins when outcome is Defunct coin', () => {
+        const player1 = new Player(0, true);
+        const player2 = new Player(1, false);
+        const outcome =
+            [
+                DEFUNCT_COIN
+            ];
+        const game = new Game([player1, player2], outcome);
+        const expectedResult = { blackCoins: 7, redCoins: 1};
+        game.updateCoins(DEFUNCT_COIN);
+        expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
+        expect(game.coins.redCoin).toEqual(expectedResult.redCoins);
+    });
+
+
+    it('should change the turn of a player', () => {
         const player1 = new Player(0, true);
         const player2 = new Player(1, false);
         const outcome =

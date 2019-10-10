@@ -1,4 +1,4 @@
-import {DEFUNCT_COIN, MULTI_STRIKE, RED_STRIKE, STRIKE, STRIKER_STRIKE} from "../Actions/strikerActions";
+import { DEFUNCT_COIN, MULTI_STRIKE, RED_STRIKE, STRIKE, STRIKER_STRIKE } from '../Actions/strikerActions';
 
 class Game {
     constructor(players, outcome) {
@@ -11,10 +11,11 @@ class Game {
     updateCoins(striker) {
         switch (striker) {
             case STRIKE :
-            case DEFUNCT_COIN :
                 return this.coins.blackCoin = this.coins.blackCoin - 1;
             case RED_STRIKE:
                 return this.coins.redCoin = this.coins.redCoin -1;
+            case DEFUNCT_COIN :
+                return this.coins.blackCoin = this.coins.blackCoin - 2;
             case STRIKER_STRIKE:
             case MULTI_STRIKE :
                 return ;
