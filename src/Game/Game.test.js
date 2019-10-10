@@ -6,7 +6,7 @@ import {
 } from '../Actions/strikerActions';
 
 // eslint-disable-next-line no-undef
-/* eslint no-undef: { "describe": true , "expect": true, "it": true} */
+/* eslint no-undef: { "describe": true} */
 
 describe('Game', () => {
 

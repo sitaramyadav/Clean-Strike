@@ -16,7 +16,6 @@ class Player {
         }
         this.score = this.score + (action.points);
 
-        // Remove the one points if there is 3  foul remove one more points
         if (this.foul > 2 ) {
             this.score = this.score - 1;
         }
