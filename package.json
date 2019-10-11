@@ -4,14 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "open:coverage": "open coverage/lcov-report/index.html",
-    "jest": {
-      "collectCoverage": true,
-      "coverageReporters": ["json", "html"]
-    }
+    "test": "jest --verbose",
+    "test:watch": "jest --watch --verbose",
+    "test:coverage": "jest --coverage --verbose",
+    "open:coverage": "open coverage/lcov-report/index.html"
   },
   "repository": "https://github.com/sitaramyadav/clean-strike",
   "keywords": [],

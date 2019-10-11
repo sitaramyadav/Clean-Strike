@@ -25,8 +25,6 @@ class Game {
 
     changeTurn() {
 
-        // Todo id don't need to pass to player chance can be maintain just by index of a player
-        // this.players
          if (this.currentPlayerIndex < this.players.length - 1) {
             this.currentPlayerIndex = this.currentPlayerIndex + 1;
         } else {
