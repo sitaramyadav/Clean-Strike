@@ -44,8 +44,9 @@ class Game {
 
     formatWinnerMessage(firstPlayer, secondPlayer) {
         return firstPlayer.score > secondPlayer.score
-            ? (`${firstPlayer.name} won by ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`)
-            : (`${secondPlayer.name} won by ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`);
+        // Player 1 won the game. Final Score: 15-11
+            ? (`${firstPlayer.name} won the game. Final Score: ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`)
+            : (`${secondPlayer.name} won the game. Final Score: ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`);
     }
 
     result() {
@@ -57,7 +58,7 @@ class Game {
 
 
         } else {
-            return `Match drawn by ${firstPlayer.score}, ${secondPlayer.score}`;
+            return `Game is drawn. Final Score: ${firstPlayer.score}, ${secondPlayer.score}`;
         }
     }
 

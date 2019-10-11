@@ -112,7 +112,7 @@ describe('Game', () => {
         expect(game.areCoinsExhausted()).toEqual(true);
     });
 
-    it('should draw the game', () => {
+    it('should drawn. Final Score: 6, 6', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -122,11 +122,11 @@ describe('Game', () => {
                 STRIKE, STRIKE
             ];
         const game = new Game([Suraj, Sumit], outcome);
-        const expectedResult = 'Match drawn by 6, 6';
+        const expectedResult = 'Game is drawn. Final Score: 6, 6';
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should won Suraj by 5, 0', () => {
+    it('should Suraj won the game. Final Score: 5, 0', () => {
     const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -138,11 +138,11 @@ describe('Game', () => {
                 STRIKE
             ];
         const game = new Game([Suraj, Sumit],outcome);
-        const expectedResult = 'Suraj won by 5, 0';
+        const expectedResult = 'Suraj won the game. Final Score: 5, 0';
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should won Sumit won by 1, 5', () => {
+    it('Sumit won the game. Final Score: 1, 5', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -154,12 +154,12 @@ describe('Game', () => {
                 DEFUNCT_COIN, MULTI_STRIKE
             ];
         const game = new Game([Suraj, Sumit], outcome);
-        const expectedResult = 'Sumit won by 1, 5';
+        const expectedResult = 'Sumit won the game. Final Score: 1, 5';
 
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should won Sumit by 11, 15', () => {
+    it('should Sumit won the game. Final Score: 11, 15', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -171,7 +171,7 @@ describe('Game', () => {
                 STRIKE, RED_STRIKE, NONE, MULTI_STRIKE
             ];
         const game = new Game([Suraj, Sumit], outcome);
-        const expectedResult = 'Sumit won by 11, 15';
+        const expectedResult = 'Sumit won the game. Final Score: 11, 15';
 
 
         expect(game.start()).toEqual(expectedResult);
