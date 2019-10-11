@@ -49,22 +49,38 @@ Player 2: Choose an outcome from the list below
 6. None
 
 
-## Run the tests
-
-`yarn test`
-
-## Run test coverage 
-
-`yarn test:coverage`
-
-## open the test coverage on browser
-
-`yarn open:coverage`
-
 #### Tech stack used
+
+**Make Sure you have installed Node.js and package manager like npm or yarn**
 
 **Language** 
 *JavaScript* 
 
 **Unit Testing Framework** 
 *Jest*  
+
+
+
+## Run the tests
+
+`yarn test`
+
+or 
+
+`npm test`
+
+## Run test coverage 
+
+`yarn test:coverage`
+
+or 
+
+`npm test:coverage`
+
+## open the test coverage on browser
+
+`yarn open:coverage`
+
+or 
+
+`npm open:coverage`
