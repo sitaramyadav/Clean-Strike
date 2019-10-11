@@ -116,25 +116,13 @@ describe('Player', () => {
 
         expect(player.score).toEqual(0);
 
-        player.play(STRIKER_STRIKE);
-        player.play(DEFUNCT_COIN);
-        player.play(STRIKER_STRIKE);
+        player.play(STRIKER_STRIKE); //-1
+        player.play(DEFUNCT_COIN);   //-2
+        player.play(STRIKER_STRIKE); //-1
+
+        // (-1) + (-2) +(-1) + (-1)-> additional point
 
         expect(player.score).toEqual(-5);
-    });
-
-    it('should loses an additional point when a player ​fouls 5 times' , () => {
-        const player = new Player('Suraj');
-
-        expect(player.score).toEqual(0);
-
-        player.play(STRIKER_STRIKE);
-        player.play(DEFUNCT_COIN);
-        player.play(DEFUNCT_COIN);
-        player.play(STRIKER_STRIKE);
-        player.play(STRIKER_STRIKE);
-
-        expect(player.score).toEqual(-8);
     });
 
     it('should loses two additional point when a player ​fouls 6 times' , () => {

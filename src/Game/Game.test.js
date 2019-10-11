@@ -25,7 +25,7 @@ describe('Game', () => {
     });
 
 
-    it('should not decrement coins when outcome is Multi-strike', () => {
+    it('should decrement two coins when outcome is Multi-strike', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -33,7 +33,7 @@ describe('Game', () => {
                 MULTI_STRIKE
             ];
         const game = new Game([Suraj, Sumit], outcome);
-        const expectedResult = { blackCoins: 9, redCoins: 1};
+        const expectedResult = { blackCoins: 7, redCoins: 1}; 
         game.updateCoins(MULTI_STRIKE);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
         expect(game.coins.redCoin).toEqual(expectedResult.redCoins);
@@ -75,7 +75,10 @@ describe('Game', () => {
                 DEFUNCT_COIN
             ];
         const game = new Game([Suraj, Sumit], outcome);
-        const expectedResult = { blackCoins: 8, redCoins: 1};
+        const expectedResult = { blackCoins: 8, redCoins: 1}; 
+        // Assumption:
+            // Red should not be removed in this case only black coin will removed.
+            // because red conly only can be removed when there is Red-Strike.
         game.updateCoins(DEFUNCT_COIN);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
         expect(game.coins.redCoin).toEqual(expectedResult.redCoins);
@@ -90,29 +93,16 @@ describe('Game', () => {
                 STRIKER_STRIKE
             ];
         const game = new Game([Suraj, Sumit], outcome);
-
-        expect(game.changeTurn(0)).toEqual(1);
-        expect(game.changeTurn(1)).toEqual(0);
+        // When game starts by default game sets the turn to first player;
+        const firstPlayer = 0;
+        const secondPlayer = 1;    
+        expect(game.changeTurn()).toEqual(secondPlayer); // change turn from first player to 2nd player.
+        expect(game.changeTurn()).toEqual(firstPlayer); // change turn from 2nd player to first player.
         
     });
 
-    it('should return truthy when coins are exhausted', () => {
-        const Suraj = new Player('Suraj');
-        const Sumit = new Player('Sumit');
-        const outcome =
-            [
-                STRIKE, NONE, STRIKE, RED_STRIKE,
-                STRIKE, STRIKE, STRIKE, STRIKE,
-                STRIKE, STRIKE, STRIKE
-            ];
-        const game = new Game([Suraj, Sumit], outcome);
 
-        expect(game.areCoinsExhausted()).toEqual(false);
-        game.start();
-        expect(game.areCoinsExhausted()).toEqual(true);
-    });
-
-    it('should drawn. Final Score: 6, 6', () => {
+    it('should draw. Final Score: 6, 6', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -126,7 +116,7 @@ describe('Game', () => {
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should Suraj won the game. Final Score: 5, 0', () => {
+    it('should print "Suraj won the game. Final Score: 5, 0"', () => {
     const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -142,7 +132,7 @@ describe('Game', () => {
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('Sumit won the game. Final Score: 1, 5', () => {
+    it('should print "Sumit won the game. Final Score: 1, 5"', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -159,7 +149,7 @@ describe('Game', () => {
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should Sumit won the game. Final Score: 11, 15', () => {
+    it('should print "Sumit won the game. Final Score: 11, 15', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
