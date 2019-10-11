@@ -59,7 +59,13 @@ Player 2: Choose an outcome from the list below
 **Unit Testing Framework** 
 *Jest*  
 
+## Install the dependencies.
 
+`yarn install`
+
+or 
+
+`npm install`
 
 ## Run the tests
 
