@@ -11,13 +11,13 @@ import {
 describe('Game', () => {
 
     it('should decrement a black coin only when outcome is STRIKE', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
         const expectedResult = { blackCoins: 8, redCoins: 1};
         game.updateCoins(STRIKE);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
@@ -26,13 +26,13 @@ describe('Game', () => {
 
 
     it('should not decrement coins when outcome is Multi-strike', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 MULTI_STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
         const expectedResult = { blackCoins: 9, redCoins: 1};
         game.updateCoins(MULTI_STRIKE);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
@@ -40,13 +40,13 @@ describe('Game', () => {
     });
 
     it('should decrement a red coin only when outcome is Red strike', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 RED_STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
         const expectedResult = { blackCoins: 9, redCoins: 0};
         game.updateCoins(RED_STRIKE);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
@@ -54,13 +54,13 @@ describe('Game', () => {
     });
 
     it('should not decrement any coins when outcome is Striker strike', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 STRIKER_STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
         const expectedResult = { blackCoins: 9, redCoins: 1};
         game.updateCoins(STRIKER_STRIKE);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
@@ -68,13 +68,13 @@ describe('Game', () => {
     });
 
     it('should remove two coins when outcome is Defunct coin', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 DEFUNCT_COIN
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
         const expectedResult = { blackCoins: 7, redCoins: 1};
         game.updateCoins(DEFUNCT_COIN);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
@@ -83,31 +83,29 @@ describe('Game', () => {
 
 
     it('should change the turn of a player', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 STRIKER_STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
 
-        expect(player1.chance).toEqual(true);
-        expect(player2.chance).toEqual(false);
-        game.changeTurn(player1.id);
-        expect(player1.chance).toEqual(false);
-        expect(player2.chance).toEqual(true);
+        expect(game.changeTurn(0)).toEqual(1);
+        expect(game.changeTurn(1)).toEqual(0);
+        
     });
 
     it('should return truthy when coins are exhausted', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 STRIKE, NONE, STRIKE, RED_STRIKE,
                 STRIKE, STRIKE, STRIKE, STRIKE,
                 STRIKE, STRIKE, STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
 
         expect(game.areCoinsExhausted()).toEqual(false);
         game.start();
@@ -115,48 +113,55 @@ describe('Game', () => {
     });
 
     it('should draw the game', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
              [
                 STRIKE, STRIKE, STRIKE, RED_STRIKE,
                 STRIKE, STRIKE, MULTI_STRIKE,
                 STRIKE, STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
-        const expectedResult = 'Match drawn by 6-6';
+        const game = new Game([Suraj, Sumit], outcome);
+        const expectedResult = 'Match drawn by 6, 6';
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should won the first player by 5-0', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+    it('should won Suraj by 5, 0', () => {
+    const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
-            [ STRIKE, NONE, STRIKE, NONE, STRIKE,
-                NONE, STRIKE, STRIKER_STRIKE, STRIKE
+            [ 
+                STRIKE, NONE,
+                STRIKE, NONE, 
+                STRIKE, STRIKE, 
+                STRIKE, STRIKER_STRIKE, 
+                STRIKE
             ];
-        const game = new Game([player1, player2],outcome);
-        const expectedResult = 'First player won by 5-0';
+        const game = new Game([Suraj, Sumit],outcome);
+        const expectedResult = 'Suraj won by 5, 0';
         expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should won the second player by 5-0 and format the message', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+    it('should won Sumit won by 1, 5', () => {
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
-                STRIKE, NONE, STRIKE, NONE,
-                STRIKE, RED_STRIKE, DEFUNCT_COIN,
-                MULTI_STRIKE, DEFUNCT_COIN, MULTI_STRIKE
+                STRIKE, NONE,
+                STRIKE, NONE,
+                STRIKE, RED_STRIKE,
+                DEFUNCT_COIN, MULTI_STRIKE,
+                DEFUNCT_COIN, MULTI_STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
+        const expectedResult = 'Sumit won by 1, 5';
 
-        expect(game.start()).toEqual(game.formatWinnerMessage(player1.score, player2.score));
+        expect(game.start()).toEqual(expectedResult);
     });
 
-    it('should won the Second player by 11-15', () => {
-        const player1 = new Player(0, true);
-        const player2 = new Player(1, false);
+    it('should won Sumit by 11, 15', () => {
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
         const outcome =
             [
                 STRIKE, STRIKE, STRIKE, STRIKE, STRIKE,
@@ -165,9 +170,11 @@ describe('Game', () => {
                 STRIKE, STRIKE, STRIKE, STRIKE, STRIKE,
                 STRIKE, RED_STRIKE, NONE, MULTI_STRIKE
             ];
-        const game = new Game([player1, player2], outcome);
+        const game = new Game([Suraj, Sumit], outcome);
+        const expectedResult = 'Sumit won by 11, 15';
 
-        expect(game.start()).toEqual(game.formatWinnerMessage(player1.score, player2.score));
+
+        expect(game.start()).toEqual(expectedResult);
     });
 
 });

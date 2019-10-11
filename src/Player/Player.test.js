@@ -10,16 +10,15 @@ import {
 describe('Player', () => {
 
     it('should have id, score, foul, chance', () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
-        expect(player.id).toEqual(0);
+        expect(player.name).toEqual('Suraj');
         expect(player.score).toEqual(0);
         expect(player.foul).toEqual(0);
-        expect(player.chance).toEqual(true);
     });
 
     it('should play the STRIKE and wins 1 points', () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
 
@@ -29,7 +28,7 @@ describe('Player', () => {
     });
 
     it('should play Multi-Strike and wins 2 points, but coins get back on to the carrom board', () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
 
@@ -39,7 +38,7 @@ describe('Player', () => {
     });
 
     it('should play Red strike and wins 3 points', () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
 
@@ -49,7 +48,7 @@ describe('Player', () => {
     });
 
     it('should play Striker strike and loses a point', () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
 
@@ -60,7 +59,7 @@ describe('Player', () => {
 
 
     it('should play Defunct coin and loses 2 points and a black coins should remove only', () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
 
@@ -70,7 +69,7 @@ describe('Player', () => {
     });
 
     it('should loses a point when a player does not pocket a coin for 3 successive turns' , () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
 
@@ -83,7 +82,7 @@ describe('Player', () => {
 
 
     it('should loses an additional point when a player ​fouls 3 times' , () => {
-        const player = new Player(0, true);
+        const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
 

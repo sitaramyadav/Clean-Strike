@@ -4,7 +4,8 @@ class Game {
     constructor(players, outcome) {
         this.players = players;
         this.outcome = outcome;
-        this.coins = {redCoin: 1, blackCoin: 9};
+        this.coins = { redCoin: 1, blackCoin: 9 };
+        this.currentPlayerIndex = 0;
 
     }
 
@@ -22,17 +23,16 @@ class Game {
         }
     }
 
-    changeTurn(currentId) {
-        let id = null;
+    changeTurn() {
 
-        this.players[currentId].chance = false;
-         if(currentId < this.players.length -1) {
-             id = id+1;
+        // Todo id don't need to pass to player chance can be maintain just by index of a player
+        // this.players
+         if (this.currentPlayerIndex < this.players.length - 1) {
+            this.currentPlayerIndex = this.currentPlayerIndex + 1;
         } else {
-             id = 0;
+            this.currentPlayerIndex = 0;
          }
-
-        this.players[id].chance = true;
+         return this.currentPlayerIndex;
     }
 
     isAnyPlayerWon() {
@@ -44,31 +44,31 @@ class Game {
         return this.coins.redCoin === 0 && this.coins.blackCoin === 0 ? true : false;
     }
 
-    formatWinnerMessage(firstPlayerScore, secondPlayerScore) {
-        return firstPlayerScore > secondPlayerScore
-            ? (`First player won by ${firstPlayerScore}-${(secondPlayerScore > 0 ? secondPlayerScore : 0)}`)
-            : (`Second Player won by ${firstPlayerScore}-${secondPlayerScore}`);
+    formatWinnerMessage(firstPlayer, secondPlayer) {
+        return firstPlayer.score > secondPlayer.score
+            ? (`${firstPlayer.name} won by ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`)
+            : (`${secondPlayer.name} won by ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`);
     }
 
     result() {
-        const firstPlayerScore = this.players[0].score;
-        const secondPlayerScore = this.players[1].score;
-        if (Math.abs(firstPlayerScore - secondPlayerScore) >= 3
-            && (this.players[0].score > 4 || secondPlayerScore > 4)) {
-            return this.formatWinnerMessage(firstPlayerScore, secondPlayerScore);
+        const firstPlayer = this.players[0];
+        const secondPlayer = this.players[1];
+        if (Math.abs(firstPlayer.score - secondPlayer.score) >= 3
+             && (firstPlayer.score > 4 || secondPlayer.score > 4)) {
+            return this.formatWinnerMessage(firstPlayer, secondPlayer);
+
 
         } else {
-            return `Match drawn by ${firstPlayerScore}-${secondPlayerScore}`;
+            return `Match drawn by ${firstPlayer.score}, ${secondPlayer.score}`;
         }
     }
 
     start () {
         for (let i = 0; i < this.outcome.length; i++) {
-            const currentPlayer = this.players.find(e => e.chance === true);
             const striker = this.outcome[i];
-            this.players[currentPlayer.id].play(striker);
+            this.players[this.currentPlayerIndex].play(striker);
             this.updateCoins(striker);
-            this.changeTurn(currentPlayer.id);
+            this.changeTurn();
 
             if (this.isAnyPlayerWon() || this.areCoinsExhausted()) {
                 return this.result();

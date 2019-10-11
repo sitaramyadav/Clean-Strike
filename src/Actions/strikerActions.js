@@ -21,6 +21,4 @@ export const strikerActions = function (action) {
             return  { points: 0 };
 
     }
-// player has points
-// game has coins
 };
