@@ -39,12 +39,11 @@ class Game {
     }
 
     areCoinsExhausted() {
-        return this.coins.redCoin === 0 && this.coins.blackCoin === 0 ? true : false;
+        return this.coins.redCoin === 0 && this.coins.blackCoin === 0;
     }
 
     formatWinnerMessage(firstPlayer, secondPlayer) {
         return firstPlayer.score > secondPlayer.score
-        // Player 1 won the game. Final Score: 15-11
             ? (`${firstPlayer.name} won the game. Final Score: ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`)
             : (`${secondPlayer.name} won the game. Final Score: ${firstPlayer.score}, ${Math.abs(secondPlayer.score)}`);
     }

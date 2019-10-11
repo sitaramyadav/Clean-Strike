@@ -13,7 +13,7 @@ class Player {
        const action = strikerActions(striker);
 
        if( action.points >= 1) {
-            this.score = this.score + (action.points)
+            this.score = this.score + (action.points);
        } 
        
        if( action.points < 0) {

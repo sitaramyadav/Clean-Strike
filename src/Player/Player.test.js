@@ -9,12 +9,13 @@ import {
 
 describe('Player', () => {
 
-    it('should have id, score, foul, chance', () => {
+    it('should have name, score, foul and none_successive_turn', () => {
         const player = new Player('Suraj');
 
         expect(player.name).toEqual('Suraj');
         expect(player.score).toEqual(0);
         expect(player.foul).toEqual(0);
+        expect(player.none_successive_turn).toEqual(0);
     });
 
     it('should play the STRIKE and wins 1 points', () => {
@@ -27,7 +28,7 @@ describe('Player', () => {
         expect(player.score).toEqual(1);
     });
 
-    it('should play Multi-Strike and wins 2 points, but coins get back on to the carrom board', () => {
+    it('should play Multi-Strike and wins 2 points', () => {
         const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
@@ -58,7 +59,7 @@ describe('Player', () => {
     });
 
 
-    it('should play Defunct coin and loses 2 points and a black coins should remove only', () => {
+    it('should play Defunct coin and loses 2 points', () => {
         const player = new Player('Suraj');
 
         expect(player.score).toEqual(0);
@@ -80,6 +81,35 @@ describe('Player', () => {
         expect(player.score).toEqual(-1);
     });
 
+    it('should lose a point only when a player does not pocket a coin for 5 successive turns' , () => {
+        const player = new Player('Suraj');
+
+        expect(player.score).toEqual(0);
+
+        player.play(NONE);
+        player.play(NONE);
+        player.play(NONE);
+        player.play(NONE);
+        player.play(NONE);
+
+        expect(player.score).toEqual(-1);
+    });
+
+    it('should lose two point only when a player does not pocket a coin for 6 successive turns' , () => {
+        const player = new Player('Suraj');
+
+        expect(player.score).toEqual(0);
+
+        player.play(NONE);
+        player.play(NONE);
+        player.play(NONE);
+        player.play(NONE);
+        player.play(NONE);
+        player.play(NONE);
+
+        expect(player.score).toEqual(-2);
+    });
+
 
     it('should loses an additional point when a player ​fouls 3 times' , () => {
         const player = new Player('Suraj');
@@ -91,5 +121,34 @@ describe('Player', () => {
         player.play(STRIKER_STRIKE);
 
         expect(player.score).toEqual(-5);
+    });
+
+    it('should loses an additional point when a player ​fouls 5 times' , () => {
+        const player = new Player('Suraj');
+
+        expect(player.score).toEqual(0);
+
+        player.play(STRIKER_STRIKE);
+        player.play(DEFUNCT_COIN);
+        player.play(DEFUNCT_COIN);
+        player.play(STRIKER_STRIKE);
+        player.play(STRIKER_STRIKE);
+
+        expect(player.score).toEqual(-8);
+    });
+
+    it('should loses two additional point when a player ​fouls 6 times' , () => {
+        const player = new Player('Suraj');
+
+        expect(player.score).toEqual(0);
+
+        player.play(STRIKER_STRIKE);
+        player.play(DEFUNCT_COIN);
+        player.play(DEFUNCT_COIN);
+        player.play(STRIKER_STRIKE);
+        player.play(STRIKER_STRIKE);
+        player.play(STRIKER_STRIKE);
+
+        expect(player.score).toEqual(-10);
     });
 });
