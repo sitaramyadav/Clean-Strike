@@ -14,6 +14,7 @@ class Player {
 
        if( action.points >= 1) {
             this.score = this.score + (action.points);
+            this.none_successive_turn = 0;
        } 
        
        if( action.points < 0) {

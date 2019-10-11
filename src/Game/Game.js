@@ -56,10 +56,15 @@ class Game {
              && (firstPlayer.score > 4 || secondPlayer.score > 4)) {
             return this.formatWinnerMessage(firstPlayer, secondPlayer);
 
-
         } else {
-            return `Game is drawn. Final Score: ${firstPlayer.score}, ${secondPlayer.score}`;
+            if(this.areCoinsExhausted()) {
+                return `Game is drawn. Final Score: ${firstPlayer.score}, ${secondPlayer.score}`;
+            } else {
+                return `Game is still progress. Final Score: ${firstPlayer.score}, ${secondPlayer.score}`;
+
+            }
         }
+        
     }
 
     start () {

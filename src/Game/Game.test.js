@@ -102,7 +102,23 @@ describe('Game', () => {
     });
 
 
-    it('should draw. Final Score: 6, 6', () => {
+    it('should print the status progress when neither game is drawon nor a player has won', () => {
+        const Suraj = new Player('Suraj');
+        const Sumit = new Player('Sumit');
+        const outcome =
+             [
+                NONE, STRIKE,
+                NONE, STRIKE,
+                STRIKE, STRIKE,
+                NONE,NONE, NONE
+            ];
+        const game = new Game([Suraj, Sumit], outcome);
+        const expectedResult = 'Game is still progress. Final Score: 1, 3';
+        game.start();
+        expect(game.result()).toEqual(expectedResult);
+    });
+
+    it('should draw. when coins are exhausted. Final Score: 6, 6', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
