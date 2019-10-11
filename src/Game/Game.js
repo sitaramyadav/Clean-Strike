@@ -16,7 +16,7 @@ class Game {
             case RED_STRIKE:
                 return this.coins.redCoin = this.coins.redCoin -1;
             case DEFUNCT_COIN :
-                return this.coins.blackCoin = this.coins.blackCoin - 2;
+                return this.coins.blackCoin = this.coins.blackCoin - 1;
             case STRIKER_STRIKE:
             case MULTI_STRIKE :
                 return ;

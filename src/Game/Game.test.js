@@ -67,7 +67,7 @@ describe('Game', () => {
         expect(game.coins.redCoin).toEqual(expectedResult.redCoins);
     });
 
-    it('should remove two coins when outcome is Defunct coin', () => {
+    it('should decrement the coin when outcome is Defunct coin', () => {
         const Suraj = new Player('Suraj');
         const Sumit = new Player('Sumit');
         const outcome =
@@ -75,7 +75,7 @@ describe('Game', () => {
                 DEFUNCT_COIN
             ];
         const game = new Game([Suraj, Sumit], outcome);
-        const expectedResult = { blackCoins: 7, redCoins: 1};
+        const expectedResult = { blackCoins: 8, redCoins: 1};
         game.updateCoins(DEFUNCT_COIN);
         expect(game.coins.blackCoin).toEqual(expectedResult.blackCoins);
         expect(game.coins.redCoin).toEqual(expectedResult.redCoins);
