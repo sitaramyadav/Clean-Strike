@@ -49,4 +49,22 @@ Player 2: Choose an outcome from the list below
 6. None
 
 
-##### Player 1 won the game. Final Score: 15-11
+## Run the tests
+
+`yarn test`
+
+## Run test coverage 
+
+`yarn test:coverage`
+
+## open the test coverage on browser
+
+`yarn open:coverage`
+
+#### Tech stack used
+
+**Language** 
+*JavaScript* 
+
+**Unit Testing Framework** 
+*Jest*  
